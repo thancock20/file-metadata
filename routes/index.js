@@ -1,6 +1,10 @@
 var express = require('express');
+var multer = require('multer');
 
 var router = express.Router();
+
+var storage = multer.memoryStorage();
+var upload = multer({ storage: storage });
 
 var port = process.env.PORT || 8080;
 
@@ -11,8 +15,10 @@ router.route('/')
 .get(function(req, res, next) {
   res.render('index');
 })
-.post(function(req, res, next) {
-
+.post(upload.single('upl'), function(req, res, next) {
+  res.json({
+    fileSize: req.file.size
+  });
 });
 
 module.exports = router;

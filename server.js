@@ -4,7 +4,6 @@ var router = require('./routes/index');
 var path = require('path');
 var sassMiddleware = require('node-sass-middleware');
 var morgan = require('morgan');
-var multer = require('multer');
 var bodyParser = require('body-parser');
 
 var port = process.env.PORT || 8080;
