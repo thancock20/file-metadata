@@ -4,8 +4,8 @@ var router = require('./routes/index');
 var path = require('path');
 var sassMiddleware = require('node-sass-middleware');
 var morgan = require('morgan');
-var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/url-shortener');
+var multer = require('multer');
+var bodyParser = require('body-parser');
 
 var port = process.env.PORT || 8080;
 
@@ -18,6 +18,8 @@ app.use(sassMiddleware({
   indentedSyntax: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(bodyParser.json());
 
 app.set('view engine', 'jade');
 app.set('views', './views');
